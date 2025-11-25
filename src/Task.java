@@ -1,3 +1,4 @@
+// Task class representing a single task
 public class Task {
     private int id;
     private String title;
@@ -11,6 +12,7 @@ public class Task {
         this.status = status;
     }
 
+    // Getters and setters
     public int getId() {
         return id;
     }

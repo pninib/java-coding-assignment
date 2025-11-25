@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// TaskService class for extra logic on tasks
 public class TaskService {
     private TaskRepository repository;
 
@@ -9,6 +10,7 @@ public class TaskService {
         this.repository = repository;
     }
 
+    // Mark task as DONE by ID
     public Task SetTaskDone(int id) {
         Task task = repository.getById(id);
         if (task != null) {
@@ -19,6 +21,7 @@ public class TaskService {
         return null;
     }
 
+    // Search tasks by text in title or description
     public List<Task> SearchByText(String text) {
         String lowerSearchText = text.toLowerCase();
         return repository.allList().stream()
@@ -27,6 +30,7 @@ public class TaskService {
                 .collect(Collectors.toList());
     }
 
+    // Get tasks sorted by status (NEW -> IN_PROGRESS -> DONE)
     public List<Task> getTasksSortedByStatus() {
         List<Task> sortedTasks = new ArrayList<>(repository.allList());
         sortedTasks.sort((t1, t2) -> t1.getStatus().ordinal() - t2.getStatus().ordinal());

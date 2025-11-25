@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
+//TaskRepository class manages tasks in memory and in JSON file
 public class TaskRepository {
     private List<Task> tasks = new ArrayList<>();
     private final String filePath = "src/tasks.json";
@@ -15,6 +16,7 @@ public class TaskRepository {
         loadFromFile();
     }
 
+    // Save all tasks to JSON file
     private void saveToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("[\n");
@@ -39,6 +41,7 @@ public class TaskRepository {
         }
     }
 
+    // Load tasks from JSON file
     private void loadFromFile() {
         File file = new File(filePath);
         if (!file.exists()) {

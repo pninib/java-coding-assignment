@@ -9,30 +9,74 @@ public class Main {
         TaskRepository repository = new TaskRepository();
         TaskService service = new TaskService(repository);
 
-        Task task1 = new Task(1, "ללמוד Java", "לסיים את השיעורים", Status.NEW);
-        Task task2 = new Task(2, "לקנות מצרכים", "לחמניות, חלב, ביצים", Status.IN_PROGRESS);
-        Task task3 = new Task(3, "לסיים פרויקט", "להגיש את הפרויקט למורה", Status.NEW);
+        // Infinite loop for menu options
+        while (true) {
+            System.out.println("\n*** ניהול משימות ***");
+            System.out.println("1. הוסף משימה");
+            System.out.println("2. מחק משימה");
+            System.out.println("3. עדכן סטטוס ל-DONE");
+            System.out.println("4. חפש משימות לפי טקסט");
+            System.out.println("5. הצג כל המשימות");
+            System.out.println("6. הצג משימות ממויינות לפי סטטוס");
+            System.out.println("7. יציאה");
+            System.out.print("בחר אפשרות: ");
 
-        repository.add(task1);
-        repository.add(task2);
-        repository.add(task3);
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.println("כל המשימות:");
-        for (Task t : repository.allList()) {
-            System.out.println(t);
-        }
+            switch (choice) {
+                case 1:
+                    System.out.print("הזן ID: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
 
-        service.SetTaskDone(1);
+                    System.out.print("הזן כותרת: ");
+                    String title = scanner.nextLine();
 
-        List<Task> searchResults = service.SearchByText("פרויקט");
-        System.out.println("\nחיפוש משימות לפי 'פרויקט':");
-        for (Task t : searchResults) {
-            System.out.println(t);
-        }
-        List<Task> sortedTasks = service.getTasksSortedByStatus();
-        System.out.println("\nמשימות ממויינות לפי סטטוס:");
-        for (Task t : sortedTasks) {
-            System.out.println(t);
+                    System.out.print("הזן תיאור: ");
+                    String desc = scanner.nextLine();
+
+                    Task newTask = new Task(id, title, desc, Status.NEW);
+                    repository.add(newTask);
+                    System.out.println("✓ המשימה נוספה!");
+                    break;
+
+                case 2:
+                    System.out.print("הזן ID למחיקה: ");
+                    int deleteId = scanner.nextInt();
+                    repository.delete(deleteId);
+                    System.out.println("✓ המשימה נמחקה!");
+                    break;
+
+                case 3:
+                    System.out.print("הזן ID לסימון DONE: ");
+                    int doneId = scanner.nextInt();
+                    service.SetTaskDone(doneId);
+                    System.out.println("✓ המשימה סומנה כ-DONE!");
+                    break;
+
+                case 4:
+                    System.out.print("חפש טקסט: ");
+                    String text = scanner.nextLine();
+                    List<Task> results = service.SearchByText(text);
+                    results.forEach(System.out::println);
+                    break;
+
+                case 5:
+                    repository.allList().forEach(System.out::println);
+                    break;
+
+                case 6:
+                    service.getTasksSortedByStatus().forEach(System.out::println);
+                    break;
+
+                case 7:
+                    System.out.println("להתראות!");
+                    return;
+
+                default:
+                    System.out.println("בחירה לא תקינה");
+            }
         }
     }
 }
