@@ -11,52 +11,52 @@ public class Main {
 
         // Infinite loop for menu options
         while (true) {
-            System.out.println("\n*** ניהול משימות ***");
-            System.out.println("1. הוסף משימה");
-            System.out.println("2. מחק משימה");
-            System.out.println("3. עדכן סטטוס ל-DONE");
-            System.out.println("4. חפש משימות לפי טקסט");
-            System.out.println("5. הצג כל המשימות");
-            System.out.println("6. הצג משימות ממויינות לפי סטטוס");
-            System.out.println("7. יציאה");
-            System.out.print("בחר אפשרות: ");
+            System.out.println("\n*** Task Management ***");
+            System.out.println("1. Add Task");
+            System.out.println("2. Delete Task");
+            System.out.println("3. Mark Task as DONE");
+            System.out.println("4. Search Tasks by Text");
+            System.out.println("5. Display All Tasks");
+            System.out.println("6. Display Tasks Sorted by Status");
+            System.out.println("7. Exit");
+            System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    System.out.print("הזן ID: ");
+                    System.out.print("Enter ID: ");
                     int id = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.print("הזן כותרת: ");
+                    System.out.print("Enter Title: ");
                     String title = scanner.nextLine();
 
-                    System.out.print("הזן תיאור: ");
+                    System.out.print("Enter Description: ");
                     String desc = scanner.nextLine();
 
                     Task newTask = new Task(id, title, desc, Status.NEW);
                     repository.add(newTask);
-                    System.out.println("✓ המשימה נוספה!");
+                    System.out.println("✓ Task added!");
                     break;
 
                 case 2:
-                    System.out.print("הזן ID למחיקה: ");
+                    System.out.print("Enter ID to delete: ");
                     int deleteId = scanner.nextInt();
                     repository.delete(deleteId);
-                    System.out.println("✓ המשימה נמחקה!");
+                    System.out.println("✓ Task deleted!");
                     break;
 
                 case 3:
-                    System.out.print("הזן ID לסימון DONE: ");
+                    System.out.print("Enter ID to mark as DONE: ");
                     int doneId = scanner.nextInt();
                     service.SetTaskDone(doneId);
-                    System.out.println("✓ המשימה סומנה כ-DONE!");
+                    System.out.println("✓ Task marked as DONE!");
                     break;
 
                 case 4:
-                    System.out.print("חפש טקסט: ");
+                    System.out.print("Enter text to search: ");
                     String text = scanner.nextLine();
                     List<Task> results = service.SearchByText(text);
                     results.forEach(System.out::println);
@@ -71,11 +71,11 @@ public class Main {
                     break;
 
                 case 7:
-                    System.out.println("להתראות!");
+                    System.out.println("Goodbye!");
                     return;
 
                 default:
-                    System.out.println("בחירה לא תקינה");
+                    System.out.println("Invalid choice");
             }
         }
     }

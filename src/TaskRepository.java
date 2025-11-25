@@ -37,7 +37,7 @@ public class TaskRepository {
             }
             writer.write("]");
         } catch (IOException e) {
-            System.out.println("שגיאה בכתיבה לקובץ: " + e.getMessage());
+            System.out.println("Error writing to file: " + e.getMessage());
         }
     }
 
