@@ -12,12 +12,12 @@ public class TaskRepository {
 
     }
 
-    public void Add(Task task) {
+    public void add(Task task) {
         tasks.add(task);
         saveToFile();
     }
 
-    public void Update(Task task) {
+    public void update(Task task) {
         for (int i = 0; i < tasks.size(); i++) {
             if (task.getId() == tasks.get(i).getId()) {
                 tasks.set(i, task);
@@ -27,12 +27,12 @@ public class TaskRepository {
         saveToFile();
     }
 
-    public void Delete(int id) {
+    public void delete(int id) {
         tasks.removeIf(t -> t.getId() == id);
         saveToFile();
     }
 
-    public Task GetById(int id) {
+    public Task getById(int id) {
         for (Task t : tasks) {
             if (t.getId() == id)
                 return t;
@@ -40,7 +40,7 @@ public class TaskRepository {
         return null;
     }
 
-    public List<Task> AllList() {
+    public List<Task> allList() {
         return tasks;
     }
 }
