@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskService {
     private TaskRepository repository;
@@ -19,15 +20,11 @@ public class TaskService {
     }
 
     public List<Task> SearchByText(String text) {
-        List<Task> returnTask = new ArrayList<>();
         String lowerSearchText = text.toLowerCase();
-
-        for (Task task : repository.allList()) {
-            if (task.getTitle().toLowerCase().contains(lowerSearchText) || task.getDescription().toLowerCase().contains(lowerSearchText)) {
-                returnTask.add(task);
-            }
-        }
-        return returnTask;
+        return repository.allList().stream()
+                .filter(task -> task.getTitle().toLowerCase().contains(lowerSearchText) ||
+                        task.getDescription().toLowerCase().contains(lowerSearchText))
+                .collect(Collectors.toList());
     }
 
     public List<Task> getTasksSortedByStatus() {
