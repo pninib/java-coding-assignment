@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// Finds all strictly increasing subarrays
 public class StrictMagnification {
     public static List<List<Integer>> getStrictMagnification(int[] arr) {
         List<List<Integer>> result = new ArrayList<>();
@@ -19,15 +20,15 @@ public class StrictMagnification {
                 current.clear();
                 current.add(arr[i]);
             }
-            if (current.size() > 1) {
-                result.add(new ArrayList<>(current));
-            }
+        }
+        if (current.size() > 1) {
+            result.add(new ArrayList<>(current));
         }
         return result;
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 1, 2, 4, 1, 2};
+        int[] arr = {1, 2, 3, 1, 2};
         List<List<Integer>> increasingSubarrays = getStrictMagnification(arr);
         System.out.println(increasingSubarrays);
     }
