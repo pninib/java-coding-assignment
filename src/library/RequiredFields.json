@@ -1,0 +1,8 @@
+{
+  "RequiredFields": {
+    "BookDTO": ["title", "authorId", "available"],
+    "AuthorDTO": ["name"],
+    "UserDTO": ["name", "email"],
+    "LoanDTO": ["bookId", "userId", "loanDate"]
+  }
+}

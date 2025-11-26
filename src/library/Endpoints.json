@@ -1,0 +1,8 @@
+{
+  "Endpoints": {
+    "Books": ["GET /books", "GET /books/{id}", "POST /books", "PUT /books/{id}", "DELETE /books/{id}"],
+    "Authors": ["GET /authors", "GET /authors/{id}", "POST /authors", "PUT /authors/{id}", "DELETE /authors/{id}"],
+    "Users": ["GET /users", "GET /users/{id}", "POST /users", "PUT /users/{id}", "DELETE /users/{id}"],
+    "Loans": ["GET /loans", "GET /loans/{id}", "POST /loans", "PUT /loans/{id}", "DELETE /loans/{id}"]
+  }
+}
