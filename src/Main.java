@@ -2,6 +2,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    private static int readInt(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        while (!scanner.hasNextInt()) {
+            System.out.print("Enter a valid number: ");
+            scanner.nextLine();
+        }
+        int number = scanner.nextInt();
+        scanner.nextLine();
+        return number;
+    }
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -19,16 +29,12 @@ public class Main {
             System.out.println("5. Display All Tasks");
             System.out.println("6. Display Tasks Sorted by Status");
             System.out.println("7. Exit");
-            System.out.print("Choose an option: ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = readInt(scanner, "Choose an option: ");
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter ID: ");
-                    int id = scanner.nextInt();
-                    scanner.nextLine();
+                    int id = readInt(scanner, "Enter ID: ");
 
                     System.out.print("Enter Title: ");
                     String title = scanner.nextLine();
@@ -42,16 +48,14 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.print("Enter ID to delete: ");
-                    int deleteId = scanner.nextInt();
-                    repository.delete(deleteId);
+                    int idd = readInt(scanner, "Enter ID to delete: ");
+                    repository.delete(idd);
                     System.out.println("✓ Task deleted!");
                     break;
 
                 case 3:
-                    System.out.print("Enter ID to mark as DONE: ");
-                    int doneId = scanner.nextInt();
-                    service.SetTaskDone(doneId);
+                    int idD = readInt(scanner, "Enter ID to mark as DONE: ");
+                    service.SetTaskDone(idD);
                     System.out.println("✓ Task marked as DONE!");
                     break;
 
