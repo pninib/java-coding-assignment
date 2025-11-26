@@ -1,0 +1,62 @@
+{
+  "_comment": " Ordering + Payment System",
+
+  "Classes": {
+    "Order": {
+      "responsibility": "Store order details, products, quantity, customer info, and status",
+      "fields": [
+        "orderId",
+        "customerId",
+        "products",
+        "totalAmount",
+        "status"
+      ]
+    },
+    "Payment": {
+      "responsibility": "Store payment details, amount, date, method; ensure linked to correct order",
+      "fields": [
+        "paymentId",
+        "orderId",
+        "amount",
+        "paymentDate",
+        "paymentMethod",
+        "status"
+      ]
+    },
+    "Customer": {
+      "responsibility": "Store customer information and list of orders/payments",
+      "fields": [
+        "customerId",
+        "name",
+        "email",
+        "address",
+        "orders",
+        "payments"
+      ]
+    },
+    "Product": {
+      "responsibility": "Store product details and price",
+      "fields": [
+        "productId",
+        "name",
+        "price"
+      ]
+    },
+    "OrderManager": {
+      "responsibility": "Manage orders and verify payments are linked to the correct order",
+      "methods": [
+        "createOrder()",
+        "calculateTotal()",
+        "validatePayment(orderId, payment)"
+      ]
+    }
+  },
+  "Validation": {
+    "_comment": "How to ensure payment is linked to the correct order",
+    "steps": [
+      "Check that payment.orderId exists in Orders",
+      "Verify payment.amount matches order.totalAmount",
+      "Update order status after successful payment"
+    ]
+  }
+}

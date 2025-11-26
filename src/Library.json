@@ -1,0 +1,73 @@
+{
+  "_comment": "Library REST API design - all sections",
+
+  "Endpoints": {
+    "Books": ["GET /books", "GET /books/{id}", "POST /books", "PUT /books/{id}", "DELETE /books/{id}"],
+    "Authors": ["GET /authors", "GET /authors/{id}", "POST /authors", "PUT /authors/{id}", "DELETE /authors/{id}"],
+    "Users": ["GET /users", "GET /users/{id}", "POST /users", "PUT /users/{id}", "DELETE /users/{id}"],
+    "Loans": ["GET /loans", "GET /loans/{id}", "POST /loans", "PUT /loans/{id}", "DELETE /loans/{id}"]
+  },
+
+  "Operations": {
+    "Books": {
+      "GET": "Get list of books or a single book",
+      "POST": "Create a new book",
+      "PUT": "Update an existing book",
+      "DELETE": "Delete a book"
+    },
+    "Authors": {
+      "GET": "Get list of authors or author details",
+      "POST": "Create a new author",
+      "PUT": "Update an author",
+      "DELETE": "Delete an author"
+    },
+    "Users": {
+      "GET": "Get list of users or user details",
+      "POST": "Create a new user",
+      "PUT": "Update user details",
+      "DELETE": "Delete a user"
+    },
+    "Loans": {
+      "GET": "Get list of loans or loan details",
+      "POST": "Create a new loan",
+      "PUT": "Update loan return status",
+      "DELETE": "Delete a loan"
+    }
+  },
+
+  "DTOs": {
+    "BookDTO": {
+      "id": "string",
+      "title": "string",
+      "authorId": "string",
+      "publishedYear": "number",
+      "genre": "string",
+      "available": "boolean"
+    },
+    "AuthorDTO": {
+      "id": "string",
+      "name": "string",
+      "birthYear": "number"
+    },
+    "UserDTO": {
+      "id": "string",
+      "name": "string",
+      "email": "string"
+    },
+    "LoanDTO": {
+      "id": "string",
+      "bookId": "string",
+      "userId": "string",
+      "loanDate": "YYYY-MM-DD",
+      "returnDate": "YYYY-MM-DD",
+      "returned": "boolean"
+    }
+  },
+
+  "RequiredFields": {
+    "BookDTO": ["title", "authorId", "available"],
+    "AuthorDTO": ["name"],
+    "UserDTO": ["name", "email"],
+    "LoanDTO": ["bookId", "userId", "loanDate"]
+  }
+}
